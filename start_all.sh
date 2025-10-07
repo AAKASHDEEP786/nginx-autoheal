@@ -1,18 +1,28 @@
 #!/bin/bash
 echo "🚀 Starting all monitoring services..."
 
+# Go to project root
+cd "$(dirname "$0")"
+
 # Start NGINX
+echo "➡️ Starting NGINX..."
 sudo systemctl start nginx
 
-# Start NGINX exporter
-~/nginx-prometheus-exporter_0.11.0_linux_amd64/nginx-prometheus-exporter --nginx.scrape-uri http://localhost/nginx_status &
+# Start NGINX Prometheus Exporter
+echo "➡️ Starting NGINX Prometheus Exporter..."
+./binaries/nginx-prometheus-exporter --nginx.scrape-uri http://localhost/nginx_status &
 
 # Start Prometheus
-~/prometheus-3.6.0.linux-amd64/prometheus --config.file=~/nginx-autoheal/prometheus/prometheus.yml &
+echo "➡️ Starting Prometheus..."
+./binaries/prometheus --config.file=./prometheus/prometheus.yml &
 
 # Start Alertmanager
-~/alertmanager-0.28.1.linux-amd64/alertmanager --config.file=~/nginx-autoheal/alertmanager/alertmanager.yml &
+echo "➡️ Starting Alertmanager..."
+./binaries/alertmanager --config.file=./alertmanager/alertmanager.yml &
 
-# Start Flask webhook
-cd ~/nginx-autoheal/webhook
+# Start Flask Webhook
+echo "➡️ Starting Flask Webhook..."
+cd ./webhook
 python3 webhook.py &
+
+echo "✅ All monitoring services started successfully!"
