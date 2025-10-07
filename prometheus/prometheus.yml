@@ -1,0 +1,31 @@
+# my global config
+global:
+  scrape_interval: 15s       # How often to scrape metrics
+  evaluation_interval: 15s   # How often to evaluate rules
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['localhost:9093']   # Alertmanager address
+
+# Load rules once and periodically evaluate them
+rule_files:
+  - "/etc/prometheus/alert_rules.yml"   # Custom alert rules file
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus itself
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+        labels:
+          app: "prometheus"
+
+  # Nginx metrics exporter
+  - job_name: "nginx"
+    static_configs:
+      - targets: ["localhost:9113"]     # nginx-prometheus-exporter default port
+        labels:
+          app: "nginx"
+

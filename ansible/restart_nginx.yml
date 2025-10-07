@@ -1,0 +1,8 @@
+- name: Restart NGINX automatically when alert triggered
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Restart NGINX service
+      service:
+        name: nginx
+        state: restarted
