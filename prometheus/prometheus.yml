@@ -7,11 +7,11 @@ global:
 alerting:
   alertmanagers:
     - static_configs:
-        - targets: ['localhost:9093']   # Alertmanager address
+        - targets: ['localhost:9093']  
 
 # Load rules once and periodically evaluate them
 rule_files:
-  - "./prometheus/rules.yml"   # Custom alert rules file
+  - "/home/dev/nginx-autoheal/prometheus/rules.yml"   # Custom alert rules file
 
 # Scrape configurations
 scrape_configs:

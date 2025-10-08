@@ -8,7 +8,7 @@ def handle_alert():
     data = request.json
     print("Received alert:", data)
     # Run Ansible playbook when alert received
-    subprocess.run(["ansible-playbook", "/home/dev/restart_nginx.yml"])
+    subprocess.run(["ansible-playbook", "/home/dev/nginx-autoheal/ansible/restart_nginx.yml"]) # Custom restart nginx file
     return "Alert received", 200
 
 if __name__ == '__main__':
