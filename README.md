@@ -39,7 +39,7 @@ chmod +x start_all.sh
 ```
 ### 4️⃣ Verify
 
-Nginx  → http://localhost
+Nginx Server  → http://localhost
 
 Prometheus → http://localhost:9090
 
@@ -47,6 +47,31 @@ Nginx metrics → http://localhost:9113
 
 Alertmanager → http://localhost:9093
 
+---
 
+🧠 How It Works
 
+1. Prometheus scrapes metrics from:
 
+   •  NGINX (via exporter)
+
+   •  Itself (self-monitoring)
+
+2. If NGINX is down, a rule in rules.yml fires an alert.
+
+3. Alertmanager receives the alert and sends a webhook request to webhook.py.
+
+4. The webhook triggers an Ansible playbook:
+```bash
+ansible-playbook ansible/restart_nginx.yml
+```
+
+which restarts the NGINX service automatically.
+
+---
+
+🧑‍💻 Author
+
+Aakash Deep
+DevOps Engineer | AWS | Terraform | Jenkins | Kubernetes | CI/CD Automation
+📧 akashdeep960@gmail.com
