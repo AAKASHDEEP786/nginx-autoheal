@@ -70,7 +70,7 @@ which restarts the NGINX service automatically.
 
 ---
 
-🧑‍💻 Author
+## 🧑‍💻 Author
 
 Aakash Deep
 DevOps Engineer | AWS | Terraform | Jenkins | Kubernetes | CI/CD Automation
