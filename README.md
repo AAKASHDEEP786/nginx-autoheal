@@ -74,4 +74,5 @@ which restarts the NGINX service automatically.
 
 Aakash Deep
 DevOps Engineer | AWS | Terraform | Jenkins | Kubernetes | CI/CD Automation
+
 📧 akashdeep960@gmail.com
